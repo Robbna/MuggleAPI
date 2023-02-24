@@ -1,9 +1,9 @@
-import { PotionsEndpoint } from './model/endpoint/PotionsEndpoint';
-import { SpellsEndpoint } from './model/endpoint/SpellsEndpoint';
-import { CharactersEndpoint } from './model/endpoint/CharactersEndpoint';
+import { PotionsEndpoint } from './model/endpoints/PotionsEndpoint';
+import { SpellsEndpoint } from './model/endpoints/SpellsEndpoint';
+import { CharactersEndpoint } from './model/endpoints/CharactersEndpoint';
 import express from "express";
 import dotenv from "dotenv";
-import { BooksEndpoint } from './model/endpoint/BooksEndpoint';
+import { BooksEndpoint } from './model/endpoints/BooksEndpoint';
 dotenv.config();
 
 const app = express();

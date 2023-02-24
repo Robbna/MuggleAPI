@@ -1,5 +1,5 @@
-import { IEndpoint } from "../interface/IEndpoint";
-import { Endpoint } from "../super/Endpoint";
+import { IEndpoint } from "../interfaces/IEndpoint";
+import { Endpoint } from "../supers/Endpoint";
 import data from "../../data/books.json";
 export class BooksEndpoint extends Endpoint implements IEndpoint {
   initialize(): void {
