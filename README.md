@@ -3,25 +3,29 @@
 MuggleAPI is a JSON based API with data from the Harry Potter Universe! 🤓
 
 ## API Reference
+### Base URL
+```https
+https://muggle-api.up.railway.app
+```
 
 #### 🙋 Get all characters
 ```https
-  GET /api/characters
+GET /api/characters
 ```
 
 #### 🫖 Get all potions 
 ```https
-  GET /api/potions
+GET /api/potions
 ```
 
 #### ✨ Get all spells 
 ```https
-  GET /api/spells
+GET /api/spells
 ```
 
 #### 📚 Get all books 
 ```https
-  GET /api/books
+GET /api/books
 ```
 
 ## License
