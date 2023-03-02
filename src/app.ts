@@ -8,6 +8,10 @@ dotenv.config();
 
 const app = express();
 
+app.use("/api", (_req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+});
 new CharactersEndpoint(app, "/api/characters").initialize();
 new SpellsEndpoint(app, "/api/spells").initialize();
 new PotionsEndpoint(app, "/api/potions").initialize();
