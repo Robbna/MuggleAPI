@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/Robbna/muggle-api/master/banner.png)
+![Logo](https://raw.githubusercontent.com/Robbna/MuggleAPI/main/banner.png)
 # 🔎 Muggle API 
 MuggleAPI is a JSON based API with data from the Harry Potter Universe! 🤓
 
