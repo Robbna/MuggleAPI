@@ -1,9 +1,25 @@
-FROM openjdk:8-jre-slim
+# syntax=docker/dockerfile:experimental
+FROM eclipse-temurin:17-jdk-alpine as build
+WORKDIR /workspace/app
 
-WORKDIR /app
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
 
-COPY target/tu-aplicacion.jar app.jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} target/application.jar
+RUN java -Djarmode=layertools -jar target/application.jar extract --destination target/extracted
 
-EXPOSE 8080
-
-CMD ["java", "-jar", "app.jar"]
+FROM eclipse-temurin:17-jdk-alpine
+RUN addgroup -S demo && adduser -S demo -G demo
+VOLUME /tmp
+USER demo
+ARG EXTRACTED=/workspace/app/target/extracted
+WORKDIR application
+COPY --from=build ${EXTRACTED}/dependencies/ ./
+COPY --from=build ${EXTRACTED}/spring-boot-loader/ ./
+COPY --from=build ${EXTRACTED}/snapshot-dependencies/ ./
+COPY --from=build ${EXTRACTED}/application/ ./
+ENTRYPOINT ["java","-noverify","-XX:TieredStopAtLevel=1","-Dspring.main.lazy-initialization=true","org.springframework.boot.loader.JarLauncher"]
