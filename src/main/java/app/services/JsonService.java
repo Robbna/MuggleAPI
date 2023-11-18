@@ -15,7 +15,8 @@ public class JsonService<T> {
     public List<T> getList(String jsonFile, Class<T> targetClass) {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        InputStream data = BookController.class.getResourceAsStream(String.format("/data/%s", jsonFile));
+        InputStream data = BookController.class.getResourceAsStream(
+                String.format("/data/%s", jsonFile));
         try {
             List<T> list = new ArrayList<T>();
             for (JsonNode node : objectMapper.readTree(data)) {
